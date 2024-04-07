@@ -1,4 +1,4 @@
-package projeto_studio_de_danca_model;
+package projeto_studio_de_danca.modelo;
 
 import java.io.Serializable;
 import javax.persistence.Column;

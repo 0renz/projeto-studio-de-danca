@@ -2,7 +2,7 @@ package projeto_studio_de_danca;
 
 import org.junit.Test;
 import projeto_studio_de_danca.modelo.dao.PersistenciaJPA;
-import projeto_studio_de_danca_model.Modalidade;
+import projeto_studio_de_danca.modelo.Modalidade;
 
 public class TestePersistenciaJPA {
       @Test
