@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package teste_projeto_estudio_de_danca;
+package projeto_estudio_de_danca;
 
 /**
  *
