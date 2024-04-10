@@ -4,17 +4,35 @@
  */
 package projeto_studio_de_danca.modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author loren
  */
-public class Pagamentos {
+
+@Entity
+@Table(name = "tb_pagamentos")
+public class Pagamentos implements Serializable{
+    @Id
+    @Column(nullable = false)
     private Integer id;
+    
+    @Column(nullable = false)
     private Calendar dataVcto;
+    
+    @Column(nullable = false)
     private Double valor;
+    
+    @Column(nullable = true)
     private Calendar dataPgto;
+    
+    @Column(nullable = true)
     private Double valorPgto;
 
     public Pagamentos() {
