@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -24,12 +25,14 @@ public class Pagamentos implements Serializable{
     private Integer id;
     
     @Column(nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dataVcto;
     
     @Column(nullable = false)
     private Double valor;
     
     @Column(nullable = true)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dataPgto;
     
     @Column(nullable = true)
