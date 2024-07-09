@@ -4,18 +4,46 @@
  */
 package projeto_studio_de_danca.modelo;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author loren
  */
-public abstract class Pessoas {
+
+@Entity
+@Table(name = "tb_pessoas")
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Pessoas implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
+    @Column(nullable = false, length = 155)
     private String nome;
+    
+    @Column (nullable = false, length = 20)
     private String fone;
+    
+    @Column (nullable = false)
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Calendar dataAniver;
+    
+    @Column (nullable = false, length = 155)
     private String email;
+    
+    @Column (nullable = false, length = 255)
     private String endereco;
 
     public Pessoas() {

@@ -4,16 +4,34 @@
  */
 package projeto_studio_de_danca.modelo;
 
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  *
+ * 
  * @author loren
  */
-public class itensContrato {
 
+@Entity
+@Table (name = "tb_itens_contrato")
+public class itensContrato implements Serializable {
+
+    @Id
+    @ManyToOne
+    @JoinColumn (name = "contrato_id", nullable = false)
     private Integer idContrato;
+    
+    @Id
+    @ManyToOne
+    @JoinColumn (name = "contrato_id", nullable = false)
     private Integer idPacote;
-    private Pacote pacote;
-    private Contrato contrato;
 
     public itensContrato() {
     }
@@ -32,21 +50,5 @@ public class itensContrato {
 
     public void setIdPacote(Integer idPacote) {
         this.idPacote = idPacote;
-    }
-
-    public Pacote getPacote() {
-        return pacote;
-    }
-
-    public void setPacote(Pacote pacote) {
-        this.pacote = pacote;
-    }
-
-    public Contrato getContrato() {
-        return contrato;
-    }
-
-    public void setContrato(Contrato contrato) {
-        this.contrato = contrato;
     }
 }

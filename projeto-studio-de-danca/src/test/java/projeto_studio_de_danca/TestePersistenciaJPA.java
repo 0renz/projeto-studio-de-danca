@@ -3,6 +3,9 @@ package projeto_studio_de_danca;
 import java.util.Calendar;
 import java.util.Date;
 import org.junit.Test;
+import projeto_studio_de_danca.modelo.Alunos;
+import projeto_studio_de_danca.modelo.Contrato;
+import projeto_studio_de_danca.modelo.FormaPgto;
 import projeto_studio_de_danca.modelo.dao.PersistenciaJPA;
 import projeto_studio_de_danca.modelo.Modalidade;
 import projeto_studio_de_danca.modelo.Pagamentos;
@@ -21,7 +24,7 @@ public class TestePersistenciaJPA {
         }
     } 
     
-    @Test
+@Test
     public void testeModalidadeJPA() throws Exception {
         PersistenciaJPA jpa = new PersistenciaJPA();
         if (jpa.conexaoAberta()) {
@@ -38,7 +41,7 @@ public class TestePersistenciaJPA {
         }
     }
     
-        @Test
+      @Test
     public void testePagamentosJPA() throws Exception {
         PersistenciaJPA jpa = new PersistenciaJPA();
         if (jpa.conexaoAberta()) {
@@ -57,4 +60,38 @@ public class TestePersistenciaJPA {
 
         }
     }
-}
+    /*
+    @Test
+    public void testeAlunoJPA() throws Exception {
+        PersistenciaJPA jpa = new PersistenciaJPA();
+        if (jpa.conexaoAberta()) {
+            System.out.println("conectou no BD via jpa ...");
+            Alunos aluno_1 = new Alunos();
+            aluno_1.setId(1);
+            aluno_1.setNome("Adilso");
+            aluno_1.setFone("aaaaaaaaaaaaa");
+            aluno_1.setDataAniver(Calendar.getInstance());
+            aluno_1.setEmail("aaaaaaaaaaaaaa@aaaaaa.com");
+            aluno_1.setEndereco("rua aa  aa 131");
+            aluno_1.setDataInicio(Calendar.getInstance());
+            aluno_1.setDataPgto(Calendar.getInstance());
+            
+            jpa.persist(aluno_1);
+            System.out.println("Aluno:  " + aluno_1.getId() + " inserido no banco");
+            
+            Contrato contrato_1 = new Contrato();
+            contrato_1.setId(1);
+            contrato_1.setValorDesconto(15.00);
+            contrato_1.setAluno(aluno_1);
+            contrato_1.setFormaPgto(FormaPgto.PIX);
+            System.out.println("Contrato: " + contrato_1.getId() + " inserido no banco");
+            jpa.fecharConexao();
+        } else {
+            System.out.println("nao conectou no BD ...");
+
+        }
+    }
+*/
+}    
+
+   
