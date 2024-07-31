@@ -5,9 +5,12 @@
 package projeto_studio_de_danca.modelo.dao;
 
 import java.util.Collection;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
+import projeto_studio_de_danca.modelo.Modalidade;
 
 /**
  *
@@ -57,5 +60,9 @@ public class PersistenciaJPA implements InterfacePersistencia {
         entity.getTransaction().begin();// abrir a transacao.
         entity.remove(o); //realiza o delete
         entity.getTransaction().commit(); //comita a transacao (comando sql)                
-    } 
+    }
+   
+     public List<Modalidade> getModalidades() {
+            return entity.createQuery("SELECT m FROM Modalidade m", Modalidade.class).getResultList();
+    }
 }

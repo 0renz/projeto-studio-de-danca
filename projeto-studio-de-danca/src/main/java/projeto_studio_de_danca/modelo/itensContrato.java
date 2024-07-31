@@ -26,29 +26,29 @@ public class itensContrato implements Serializable {
     @Id
     @ManyToOne
     @JoinColumn (name = "contrato_id", nullable = false)
-    private Integer idContrato;
+    private Contrato idContrato;
     
     @Id
     @ManyToOne
     @JoinColumn (name = "contrato_id", nullable = false)
-    private Integer idPacote;
+    private Pacote idPacote;
 
     public itensContrato() {
     }
 
-    public Integer getIdContrato() {
+    public Contrato getIdContrato() {
         return idContrato;
     }
 
-    public void setIdContrato(Integer idContrato) {
+    public void setIdContrato(Contrato idContrato) {
         this.idContrato = idContrato;
     }
 
-    public Integer getIdPacote() {
+    public Pacote getIdPacote() {
         return idPacote;
     }
 
-    public void setIdPacote(Integer idPacote) {
+    public void setIdPacote(Pacote idPacote) {
         this.idPacote = idPacote;
     }
 }

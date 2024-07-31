@@ -30,7 +30,7 @@ public class TestePersistenciaJPA {
         if (jpa.conexaoAberta()) {
             System.out.println("conectou no BD via jpa ...");
             Modalidade modalidade_1 = new Modalidade();
-            modalidade_1.setId(1);
+            modalidade_1.setId(2);
             modalidade_1.setDescricao("FitDance");
             jpa.persist(modalidade_1);
             System.out.println("Modalidade " + modalidade_1.getDescricao() + " inserida no banco");
@@ -60,7 +60,7 @@ public class TestePersistenciaJPA {
 
         }
     }
-    /*
+    
     @Test
     public void testeAlunoJPA() throws Exception {
         PersistenciaJPA jpa = new PersistenciaJPA();
@@ -74,7 +74,7 @@ public class TestePersistenciaJPA {
             aluno_1.setEmail("aaaaaaaaaaaaaa@aaaaaa.com");
             aluno_1.setEndereco("rua aa  aa 131");
             aluno_1.setDataInicio(Calendar.getInstance());
-            aluno_1.setDataPgto(Calendar.getInstance());
+            aluno_1.setDataPgto(1);
             
             jpa.persist(aluno_1);
             System.out.println("Aluno:  " + aluno_1.getId() + " inserido no banco");
@@ -91,7 +91,6 @@ public class TestePersistenciaJPA {
 
         }
     }
-*/
 }    
 
    
