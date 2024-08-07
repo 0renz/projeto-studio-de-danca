@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import projeto_studio_de_danca.modelo.Modalidade;
+import projeto_studio_de_danca.modelo.Professores;
 
 /**
  *
@@ -30,13 +31,13 @@ public class PersistenciaJPA implements InterfacePersistencia {
     
     @Override
     public Boolean conexaoAberta() {
-        
+        System.out.println("Abriu a conexao");
         return entity.isOpen();   
     }
 
     @Override
     public void fecharConexao() {
-        
+        System.out.println("Fechou a conexao");
         entity.close();        
     }
 
@@ -61,8 +62,18 @@ public class PersistenciaJPA implements InterfacePersistencia {
         entity.remove(o); //realiza o delete
         entity.getTransaction().commit(); //comita a transacao (comando sql)                
     }
+    
+    public void merge(Object o) throws Exception {
+    entity.getTransaction().begin();
+    entity.merge(o);
+    entity.getTransaction().commit();
+}
    
      public List<Modalidade> getModalidades() {
             return entity.createQuery("SELECT m FROM Modalidade m", Modalidade.class).getResultList();
+    }
+     
+     public List<Professores> getProfessores() {
+            return entity.createQuery("SELECT m FROM Professores m", Professores.class).getResultList();
     }
 }

@@ -4,29 +4,40 @@
  */
 package projeto_studio_de_danca.modelo;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-
-/**
- *
- * @author loren
- */
 
 @Entity
 @Table(name = "tb_professores")
-@PrimaryKeyJoinColumn(name = "pessoa_id")
-public class Professores extends Pessoas{
-    
-    @Column(nullable = false)
-    @Temporal(javax.persistence.TemporalType.DATE)
-    private Calendar dataAdmissao;
+public class Professores extends Pessoas implements Serializable {
 
     public Professores() {
+//         inicialização das listas holerites e modalidades no construtor para evitar NullPointerException
+        holerites = new ArrayList<>();
+//        modalidades = new ArrayList<>();
+
     }
+
+    @Column(name = "professor_data_admissao")
+    private Calendar dataAdmissao;
+
+    
+//    Validação do Mapeamento Bidirecional: Garantir que o mapeamento @OneToMany em Professor 
+//    e @ManyToOne em FolhaPagamento estejam corretamente configurados para refletir o relacionamento bidirecional.
+    @OneToMany(mappedBy = "professor")
+    private List<FolhaPagamento> holerites= new ArrayList<>();
+    
+    
+    //    Validação do Mapeamento Bidirecional: Garantir que o mapeamento @OneToMany em Professor 
+//    e @ManyToOne em Modalidade estejam corretamente configurados para refletir o relacionamento bidirecional.
+    @OneToMany(mappedBy = "professor")
+    private List<Modalidade> modalidades = new ArrayList<>();
 
     public Calendar getDataAdmissao() {
         return dataAdmissao;
@@ -34,5 +45,24 @@ public class Professores extends Pessoas{
 
     public void setDataAdmissao(Calendar dataAdmissao) {
         this.dataAdmissao = dataAdmissao;
+    }
+
+    public List<FolhaPagamento> getHolerites() {
+        return holerites;
+    }
+
+    public void addFolhaPagamentoMes(FolhaPagamento f) {
+        holerites.add(f);
+    }
+    
+    
+    public List<Modalidade> getModalidades() {
+        return modalidades;
+    }
+
+    public void addModalidade(Modalidade m) {
+        modalidades.add(m);
+        m.setProfessor(this);
+       
     }
 }

@@ -10,11 +10,11 @@ import java.util.logging.Logger;
 import projeto_studio_de_danca.modelo.Modalidade;
 import projeto_studio_de_danca.modelo.dao.PersistenciaJPA;
 
-public class TelaModalidades extends javax.swing.JFrame {
+public class TelaModalidadesFinal extends javax.swing.JFrame {
 
     PersistenciaJPA persistencia;
 
-    public TelaModalidades() {
+    public TelaModalidadesFinal() {
         initComponents();
         listarModalidades();
     }
@@ -30,10 +30,12 @@ public class TelaModalidades extends javax.swing.JFrame {
                 modeloLista.addElement(modalidade);
             }
             lstModalidades.setModel(modeloLista);
+            persistencia.fecharConexao();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erro ao listar modalidades: " + ex.getMessage());
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -119,7 +121,7 @@ public class TelaModalidades extends javax.swing.JFrame {
             persistencia.persist(m);
             listarModalidades();
         } catch (Exception ex) {
-            Logger.getLogger(TelaModalidades.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaModalidadesFinal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnNovoActionPerformed
 
@@ -157,30 +159,22 @@ public class TelaModalidades extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoverActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        Modalidade modalidadeSelecionada
-                = lstModalidades.getSelectedValue();
+        Modalidade modalidadeSelecionada = lstModalidades.getSelectedValue();
         if (modalidadeSelecionada != null) {
-
             try {
                 persistencia = new PersistenciaJPA();
                 persistencia.conexaoAberta();
-
-                Modalidade modalidadePersistido
-                        = (Modalidade) persistencia.find(Modalidade.class,
-                                modalidadeSelecionada.getId());
-                modalidadePersistido.setDescricao(
-                        JOptionPane.showInputDialog(rootPane,
-                                "Informe a descrição da modalidade: ",
-                                modalidadeSelecionada.getDescricao()));
-                persistencia.persist(modalidadePersistido);
-                persistencia.fecharConexao();
+                TelaCadastroModalidade telaCadastro = new TelaCadastroModalidade(this, true);
+                telaCadastro.setModalidade(modalidadeSelecionada);
+                telaCadastro.setVisible(true);
                 listarModalidades();
-
             } catch (Exception e) {
                 System.err.println("Erro ao editar modalidade: " + e.getMessage());
             } finally {
                 persistencia.fecharConexao();
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Selecione uma modalidade para editar");
         }
     }//GEN-LAST:event_btnEditarActionPerformed
 
@@ -198,20 +192,21 @@ public class TelaModalidades extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaModalidades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaModalidadesFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaModalidades().setVisible(true);
+                new TelaModalidadesFinal().setVisible(true);
             }
         });
     }
